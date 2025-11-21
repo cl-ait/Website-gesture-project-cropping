@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title" content="エージェントの発話とジェスチャによる調理動画支援システムの構築 - 肥田京佳, 徳久良子">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="調理動画におけるエージェント型支援システム。GPT-4.1による画像切り出しとジェスチャ選択により、視聴者の理解を支援します。120名の評価実験で人間と同等の精度を達成。">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="調理動画, エージェント, GPT-4, CLIP, 視覚的注意誘導, AI, マルチモーダル, 画像切り出し, レシピ理解">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="肥田京佳, 徳久良子">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Japanese">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="愛知工業大学">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title" content="エージェントの発話とジェスチャによる調理動画支援システムの構築">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="調理動画におけるエージェント型支援システムの提案。">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="KEYWORD1">
+  <meta property="article:tag" content="KEYWORD2">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="PAPER_TITLE">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- TODO: Same as social preview image above -->
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="PAPER_TITLE">
+  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
+  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_conference_title" content="CONFERENCE_NAME">
+  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>エージェントの発話とジェスチャによる調理動画支援システムの構築</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">エージェントの発話とジェスチャによる<br>調理動画支援システムの構築</h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank"> -->
+                  肥田京佳
+                  <!-- </a> -->
+                  <sup>1</sup>,</span>
+                <span class="author-block">
+                  <!-- <a href="SECOND AUTHOR PERSONAL LINK" target="_blank"> -->
+                  徳久良子
+                  <!-- </a> -->
+                  <sup>1,2</sup></span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>愛知工業大学,<sup>2</sup>理化学研究所<br></span>
+              </div>
+
+              <div class="column has-text-centered">
+                <span class="link-block">
+                  <a href="static/pdfs/NL_HidaKyoka.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/cl-ait/image_cropping" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">概要</h2>
+            <div class="content has-text-justified">
+              <!-- TODO: Replace with your paper abstract -->
+              <p>
+                本研究では、調理動画における視聴者理解を支援するエージェント型インターフェースにおいて，
+                エージェントの説明箇所を自動切り出しする手法を提案します。
+                本手法は、調理場面におけるさまざまな食材や調理器具の位置・状態を言語情報と対応づけて解析し、
+                レシピ文中の説明発話（例：「タマネギを微塵切りにします。」）と対応する画像内の領域（食材や調理器具など）を、
+                GPT-4.1を用いて抽出した上で、エージェント対話向けに補正する手法です。
+                一般の被験者120名による評価実験の結果、提案手法の画像切り出しは、
+                人間による画像切り出しと同等の精度であることが分かりました。今後はエージェントの動作生成や、
+                調理の学習に対する有効性の検証に取り組む予定です。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- Problem Statement -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">背景と課題</h2>
+          <div class="content has-text-justified">
+            <h3 class="title is-4">調理動画学習の課題</h3>
+            <p>
+              現在の調理動画では、視聴者は画面全体を見ながら重要な箇所を自分で探す必要があります。
+              しかし、調理初心者にとっては以下のような困難があります：
+            </p>
+            <div class="columns is-multiline" style="margin-top: 1.5rem;">
+              <div class="column is-4">
+                <div class="box" style="height: 100%; background: #fef3c7;">
+                  <h4 class="title is-5">注目箇所の不明確さ</h4>
+                  <p>「微塵切り」や「しっかり炒める」など、抽象的な表現では具体的にどこを見ればよいか分からない</p>
+                </div>
+              </div>
+              <div class="column is-4">
+                <div class="box" style="height: 100%; background: #fecaca;">
+                  <h4 class="title is-5">安全性の懸念</h4>
+                  <p>包丁の扱い方など、危険な作業における注意点が十分に伝わらない</p>
+                </div>
+              </div>
+              <div class="column is-4">
+                <div class="box" style="height: 100%; background: #ddd6fe;">
+                  <h4 class="title is-5">補足情報の不足</h4>
+                  <p>「しっかり炒めるとは何分くらいか」「どういう状態になれば良いか」などの補足がない</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Approach -->
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">提案手法：調理動画支援システム</h2>
+          <div class="content has-text-justified">
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+              料理番組のように、エージェントが視聴者に寄り添って<strong>「ここを見てください」</strong>と
+              視線を誘導し、<strong>補足説明</strong>や<strong>注意喚起</strong>を行うシステムを目指します。
+            </p>
+
+            <div class="columns">
+              <div class="column is-6">
+                <h3 class="title is-5">視線誘導</h3>
+                <p>
+                  画像から重要な箇所（食材・調理器具など）を<strong>自動切り出し</strong>し、
+                  エージェントが指差しジェスチャで明確に示します。
+                </p>
+              </div>
+              <div class="column is-6">
+                <h3 class="title is-5">音声による補足説明</h3>
+                <p>
+                  「しっかり炒めるとはこういう状態です」「包丁で手を切らないよう注意してください」
+                  など、タイミングに応じた説明を提供します。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Processing Flow -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">処理フロー</h2>
+          <div class="has-text-centered">
+            <div
+              style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+              <img src="static/images/system_flow.jpg" alt="Overall pipeline and processing flow" loading="lazy"
+                style="width: 100%; border-radius: 8px;">
+            </div>
+            <p class="content has-text-justified" style="margin-top: 1rem; color: #64748b;">
+              本研究の調理動画支援システムは、入力画像と説明発話を受け取り、画像切り出し、ジェスチャ選択、配置の3つのモジュールで処理を行います。
+              画像切り出しモジュールでは、GPT-4.1 を用いて主要オブジェクト領域を検出・切り出しを行います。
+              ジェスチャ選択モジュールでは、補足説明を生成し、CLIP によるテキスト類似度と画像類似度を統合して最適なジェスチャを選択します。
+              配置モジュールでは、エージェントの位置と指差し方向を調整し、視聴者が注目すべき箇所を直感的に理解できるようにします。
+              これにより、エージェントは「何を」「どこで」「どのように」提示すべきかを推定し、視聴者の注意を効果的に誘導できます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End mProcessing Flow -->
+
+    <!-- Solution Approach -->
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">なぜ画像切り出しが必要か？</h2>
+          <div class="content has-text-justified">
+            <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+              <p>
+                エージェントが「ここを見てください」と指差すためには、画像内の<strong>どの領域</strong>に
+                注目すべきかを正確に特定する必要があります。本研究では、説明発話（例：「タマネギを微塵切りにします」）
+                から、該当する画像領域（タマネギと包丁）を<strong>GPT-4.1を用いて自動抽出</strong>することで、
+                エージェントが適切な箇所を指し示せるようにします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Cropping Example -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered">切り出し画像例</h2>
+          <div class="has-text-centered">
+            <div
+              style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+              <img src="static/images/cropping_example.jpg" alt="Overall pipeline and processing flow" loading="lazy"
+                style="width: 100%; border-radius: 8px;">
+            </div>
+            <p class="content has-text-justified" style="margin-top: 1rem; color: #64748b;">
+              提案手法では、調理シーンの画像と説明発話（タマネギを微塵切りにします。）を入力として、
+              説明発話と最も関連する画像領域を自動的に抽出し、当該領域を切り出します。
+              これにより、レシピの各工程における視覚的な焦点を明確化し、視聴者の理解を支援できます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End mProcessing Flow -->
+
+    <!-- Image carousel -->
+    <!-- <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item"> -->
+    <!-- TODO: Replace with your research result images -->
+    <!-- <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy" /> -->
+    <!-- TODO: Replace with description of this result -->
+    <!-- <h2 class="subtitle has-text-centered">
+                First image description.
+              </h2>
+            </div>
+            <div class="item"> -->
+    <!-- Your image here -->
+    <!-- <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy" />
+              <h2 class="subtitle has-text-centered">
+                Second image description.
+              </h2>
+            </div>
+            <div class="item"> -->
+    <!-- Your image here -->
+    <!-- <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy" />
+              <h2 class="subtitle has-text-centered">
+                Third image description.
+              </h2>
+            </div>
+            <div class="item"> -->
+    <!-- Your image here -->
+    <!-- <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy" />
+              <h2 class="subtitle has-text-centered">
+                Fourth image description.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- End image carousel -->
+
+
+
+
+    <!-- Youtube video -->
+    <!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container"> -->
+    <!-- Paper video. -->
+    <!-- <h2 class="title is-3">Video Presentation</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          
+          <div class="publication-video"> -->
+    <!-- TODO: Replace with your YouTube video ID -->
+    <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+    <!-- End youtube video -->
+
+
+    <!-- Video carousel -->
+    <!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1"> -->
+    <!-- TODO: Add poster image for better preview -->
+    <!-- <video poster="" id="video1" controls muted loop height="100%" preload="metadata"> -->
+    <!-- Your video file here -->
+    <!-- <source src="static/videos/carousel1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2"> -->
+    <!-- TODO: Add poster image for better preview -->
+    <!-- <video poster="" id="video2" controls muted loop height="100%" preload="metadata"> -->
+    <!-- Your video file here -->
+    <!-- <source src="static/videos/carousel2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3"> -->
+    <!-- TODO: Add poster image for better preview -->
+    <!-- <video poster="" id="video3" controls muted loop height="100%" preload="metadata"> -->
+    <!-- Your video file here -->
+    <!-- <source src="static/videos/carousel3.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+    <!-- End video carousel -->
+
+
+
+
+
+
+    <!-- Paper poster -->
+    <!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2> -->
+
+    <!-- TODO: Replace with your poster PDF -->
+    <!-- <iframe  src="static/pdfs/NL_HidaKyoka.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+    <!--End paper poster -->
+
+
+
+    <!--BibTex citation -->
+    <!-- <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@article{YourPaperKey2024,
+  title={Your Paper Title Here},
+  author={First Author and Second Author and Third Author},
+  journal={Conference/Journal Name},
+  year={2024},
+  url={https://your-domain.com/your-project-page}
+}</code></pre>
+      </div>
+    </section> -->
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in
+                the footer. <br> This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
